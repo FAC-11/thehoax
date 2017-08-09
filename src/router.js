@@ -2,12 +2,13 @@ const handlers = require('./handlers');
 
 const router = (req, res) => {
   const url = req.url;
+  const publicFile = req.url.split('/')[2];
 
-  switch (`${req.method} ${url}`) {
+  switch (`${req.method} ${req.url}`) {
     case 'GET /':
       handlers.handleHomeRoute(req, res);
       break;
-    case `GET ${/\/public\/.*/}`:
+    case `GET /public/${publicFile}`:
       handlers.handlePublic(req, res, url);
       break;
     case 'POST /login':
@@ -24,7 +25,7 @@ const router = (req, res) => {
       break;
     default:
       res.writeHead(404, 'Content-Type: text/html');
-      res.end('<h1>404 not found</h1>');
+      res.end('<h1>404!</h1><h2>We were never here...</h2>');
       break;
   }
 };
