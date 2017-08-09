@@ -6,7 +6,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
-  hash VARCHAR(100) NOT NULL
+  hash VARCHAR(100)
 );
 
 INSERT INTO users(username, email, hash) VALUES
@@ -20,12 +20,12 @@ INSERT INTO users(username, email, hash) VALUES
 
  CREATE TABLE history (
    id SERIAL PRIMARY KEY,
-   userId int4 REFERENCES users(id),
-   searchDate timestamp NOT NULL,
+   userid int4 REFERENCES users(id),
+   searchdate timestamp NOT NULL,
    search VARCHAR(100) NOT NULL
  );
 
- INSERT INTO history(userId, searchDate, search) VALUES
+ INSERT INTO history(userid, searchdate, search) VALUES
   ('1','2017-08-09 12:45:34.243', 'Is Bin-Laden alive?'),
   ('2','2017-06-30 13:45:34.243', 'Is Abdullah a spy?'),
   ('3','2017-07-15 01:45:34.243', 'Is the moon landing fake?');
