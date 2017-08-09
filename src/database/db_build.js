@@ -15,4 +15,4 @@ const buildDataBase = () => {
 };
 
 buildDataBase();
-module.exports = buildDatabase;
+module.exports = buildDataBase;

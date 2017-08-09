@@ -17,12 +17,12 @@ INSERT INTO users(username, email, password, hash) VALUES
 
  CREATE TABLE history (
    id SERIAL PRIMARY KEY,
-   userId int FOREIGN KEY REFERENCES users(id),
-   searchDate datetime NOT NULL DEFAULT GETDATE(),
-   search VARCHAR(100) NOT NULL,
+   userId int4 REFERENCES users(id),
+   searchDate timestamp NOT NULL,
+   search VARCHAR(100) NOT NULL
  );
 
- INSERT INTO users(userId, searchDate, search) VALUES
+ INSERT INTO history(userId, searchDate, search) VALUES
   ('1','2017-08-09 12:45:34.243', 'Is Bin-Laden alive?'),
   ('2','2017-06-30 13:45:34.243', 'Is Abdullah a spy?'),
   ('3','2017-07-15 01:45:34.243', 'Is the moon landing fake?');
