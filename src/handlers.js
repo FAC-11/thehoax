@@ -40,6 +40,10 @@ const handlers = {
       }
     });
   },
+  handleLogin: (req, res, url) => {},
+  handleLogout: (req, res, url) => {},
+  handleTinfoild: (req, res, url) => {},
+  handleSearch: (req, res, url) => {},
 };
 
 module.exports = handlers
