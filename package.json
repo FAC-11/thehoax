@@ -1,0 +1,38 @@
+{
+  "name": "thehoax",
+  "version": "1.0.0",
+  "description": "have you ever wondered if something is true but been too embarassed to ask your friends?",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "tape ./tests/test.js | tap-spec",
+    "converage": "istanbul cover ./tests/test.js",
+    "start": "node ./src/server.js",
+    "devstart": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC-11/thehoax.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC-11/thehoax/issues"
+  },
+  "homepage": "https://github.com/FAC-11/thehoax#readme",
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "istanbul": "^0.4.5",
+    "nodemon": "^1.11.0",
+    "shot": "^3.4.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
+    "travis": "^0.1.1"
+  },
+  "dependencies": {
+    "env2": "^2.2.0",
+    "pg": "^7.1.0"
+  }
+}
