@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "node"
+before_install:
+  - pip install --user codecov
+after_success:
+  - codecov --file coverage/lcov.info --disable search
+postgresql: &postgresql
+adapter: postgresql
+username: foo
+password: bar
+database: travis_test_db
+before_script:
+  - psql -c "CREATE DATABASE travis_test_db;" -U postgres
+  - psql -c "CREATE USER foo WITH PASSWORD 'bar';" -U postgres
