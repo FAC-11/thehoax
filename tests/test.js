@@ -60,7 +60,7 @@ tape("Select all from history", t => {
     if (err) {
       t.error(err, 'this is an error')
     } else {
-      const actual = (res.rows).toString();
+      const actual = (res.rows);
       t.deepEquals(actual, expected, "db_connection connects to the database history and sends the correct data");
       t.end();
     }
