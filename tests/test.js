@@ -9,27 +9,23 @@ tape("Select all from users", t => {
     {
       username: 'secretSquirrel',
       email: 'secretSquirrel@tinfoild.com',
-      password: 'S3crEtSconS!',
-      hash: 'jdfjaebkjehrhehjdfhbe'
+      hash: '$2a$12$sC.59Y4qqYh9s9za4iuXde8.mbUbEyQlfBR8LgwPj5gpBpLgAklnu'
     },
     {
       username: 'theConspirat0r',
       email: 'theConspirat0r@tinfoild.com',
-      password: 'c0nSpiracy123!',
-      hash: 'wdfjbqfuvwahdkwkjhodufye'
+      hash: '$2a$12$yXQokIuBEBYN7MKl5gy/P.pc1aHea4Ow/8yzim7Q9QiQ60a3w6xA2'
     },
     {
       username: 'theRealSherlock',
       email: 'theRealSherlock@tinfoild.com',
-      password: 'Sh3erl0ck1234!',
-      hash: 'defhjqhbdjhfhedffe'
+      hash: '$2a$12$XKvMVmVljg68aKsPsSeN5.QXVkx0cQhW3RQE49mTTchxm7tRgEHom'
     }
   ];
-  dbConnection.query("SELECT username, email, password, hash FROM users;", (err, res) => {
+  dbConnection.query("SELECT username, email, hash FROM users;", (err, res) => {
     if(err){
       t.error(err, 'this is an error')
     } else {
-      console.log('actual', res.rows);
       const actual = res.rows;
       t.deepEquals(actual, expected, "db_connection connects to the database and sends the correct data");
       t.end();

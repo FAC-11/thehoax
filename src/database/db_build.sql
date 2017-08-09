@@ -6,14 +6,17 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
-  password VARCHAR(100) NOT NULL,
   hash VARCHAR(100) NOT NULL
 );
 
-INSERT INTO users(username, email, password, hash) VALUES
- ('secretSquirrel','secretSquirrel@tinfoild.com', 'S3crEtSconS!','jdfjaebkjehrhehjdfhbe'),
- ('theConspirat0r','theConspirat0r@tinfoild.com', 'c0nSpiracy123!','wdfjbqfuvwahdkwkjhodufye'),
- ('theRealSherlock','theRealSherlock@tinfoild.com', 'Sh3erl0ck1234!','defhjqhbdjhfhedffe');
+INSERT INTO users(username, email, hash) VALUES
+ ('secretSquirrel','secretSquirrel@tinfoild.com','$2a$10$sC.59Y4qqYh9s9za4iuXde8.mbUbEyQlfBR8LgwPj5gpBpLgAklnu'),
+ ('theConspirat0r','theConspirat0r@tinfoild.com', '$2a$10$yXQokIuBEBYN7MKl5gy/P.pc1aHea4Ow/8yzim7Q9QiQ60a3w6xA2'),
+ ('theRealSherlock','theRealSherlock@tinfoild.com','$2a$10$XKvMVmVljg68aKsPsSeN5.QXVkx0cQhW3RQE49mTTchxm7tRgEHom');
+
+ -- S3crEtSconS!
+ -- c0nSpiracy123!
+ -- Sh3erl0ck1234!
 
  CREATE TABLE history (
    id SERIAL PRIMARY KEY,
