@@ -9,17 +9,17 @@ tape("Select all from users", t => {
     {
       username: 'secretSquirrel',
       email: 'secretSquirrel@tinfoild.com',
-      hash: '$2a$12$sC.59Y4qqYh9s9za4iuXde8.mbUbEyQlfBR8LgwPj5gpBpLgAklnu'
+      hash: '$2a$10$sC.59Y4qqYh9s9za4iuXde8.mbUbEyQlfBR8LgwPj5gpBpLgAklnu'
     },
     {
       username: 'theConspirat0r',
       email: 'theConspirat0r@tinfoild.com',
-      hash: '$2a$12$yXQokIuBEBYN7MKl5gy/P.pc1aHea4Ow/8yzim7Q9QiQ60a3w6xA2'
+      hash: '$2a$10$yXQokIuBEBYN7MKl5gy/P.pc1aHea4Ow/8yzim7Q9QiQ60a3w6xA2'
     },
     {
       username: 'theRealSherlock',
       email: 'theRealSherlock@tinfoild.com',
-      hash: '$2a$12$XKvMVmVljg68aKsPsSeN5.QXVkx0cQhW3RQE49mTTchxm7tRgEHom'
+      hash: '$2a$10$XKvMVmVljg68aKsPsSeN5.QXVkx0cQhW3RQE49mTTchxm7tRgEHom'
     }
   ];
   dbConnection.query("SELECT username, email, hash FROM users;", (err, res) => {
@@ -32,3 +32,5 @@ tape("Select all from users", t => {
     }
   });
 });
+
+tape.onFinish(() => process.exit())
