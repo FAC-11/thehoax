@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS users, history CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -10,7 +10,7 @@ CREATE TABLE users (
   hash VARCHAR(100) NOT NULL
 );
 
-INSERT INTO users(username, email, password, hash) VALUES
+INSERT INTO users(username, email, password) VALUES
  ('secretSquirrel','secretSquirrel@tinfoild.com', 'S3crEtSconS!','jdfjaebkjehrhehjdfhbe'),
  ('theConspirat0r','theConspirat0r@tinfoild.com', 'c0nSpiracy123!','wdfjbqfuvwahdkwkjhodufye'),
  ('theRealSherlock','theRealSherlock@tinfoild.com', 'Sh3erl0ck1234!','defhjqhbdjhfhedffe');
