@@ -11,7 +11,8 @@ const path = require('path');
 const querystring = require('querystring');
 const {
   loginQuery,
-  verifyUser
+  verifyUser,
+  makeJwt
 } = require('./login');
 const waterfall = require('./waterfall');
 const getData = require('./queries/get_data');
@@ -58,10 +59,12 @@ const handlers = {
 
     req.on('end', () => {
       let dataObj = querystring.parse(data);
-      waterfall(dataObj, [loginQuery, verifyUser], (error, finalObj) => {
+      waterfall(dataObj, [loginQuery, verifyUser, makeJwt], (error, finalObj) => {
         if (finalObj.loggedIn) {
+          console.log(finalObj);
+          res.setHeader('Set-Cookie', `jwt=${finalObj.jwebtoken}&obj=${finalObj.username}`);
           res.writeHead(302, {
-            'Location': '/public/tinfoild.html'
+            'Location': '/public/tinfoild.html',
           });
           res.end();
         } else {
