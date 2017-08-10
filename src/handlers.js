@@ -4,6 +4,7 @@
 // '/search' -> to call hoaxy api
 // '/tinfoild' -> landing page after login
 // '/default' -> for error handling
+//
 
 const fs = require('fs');
 const path = require('path');
