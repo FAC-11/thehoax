@@ -36,6 +36,7 @@
     "travis": "^0.1.1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "env2": "^2.2.0",
     "pg": "^7.1.0"
   }
