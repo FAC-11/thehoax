@@ -11,6 +11,7 @@ const path = require('path');
 const querystring = require('querystring');
 const { loginQuery, verifyUser } = require('./login');
 const waterfall = require('./waterfall');
+const getData = require('./queries/get_data');
 
 const handlers = {
   handleHomeRoute: (req, res) => {
@@ -69,7 +70,14 @@ const handlers = {
     });
   },
   handleLogout: (req, res, url) => {},
-  handleTinfoild: (req, res, url) => {},
+  handleTinfoild: (req, res, url) => {
+    getData((err, dbResp) => {
+      if (err) return console.log('error from db query', err);
+    let data = JSON.stringify(dbResp);
+    res.writeHead(200, {"content-type": "application/json"});
+    res.end(data);
+  });
+  },
   handleSearch: (req, res, url) => {},
 };
 
