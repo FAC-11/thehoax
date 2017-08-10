@@ -13,13 +13,19 @@
   <form action="/login" method='POST'>
     <label for="username">Username:</label>
     <input id="username" type="username" placeholder="Username" aria-label="please enter your username">
+    <div id='js-username-error'></div>
+
     <label for="email">Email:</label>
     <input id="email" type="email" placeholder="Yoursecretname@tinfoild.com" aria-label="please enter your tinfoiled.com email">
-    <label for="password" title="Use 12 characters with numbers and symbols">Password:</label>
-    <input type="password" id='password' placeholder="sSF*19!ASDH-" aria-label="Use a minimum length of 12 characters and please use numbers and symbols for your password">
-    <div id='js-validate-message'></div>
-    <input type="submit" id='submit' aria-label="Please click to sign in">
-  </form>
+    <div id='js-email-error'></div>
 
+    <label for="password" title="Use 12 characters with numbers, symbols and at least one upper case">Password:</label>
+    <input type="password" id='password' placeholder="sSF*19!ASDH-" aria-label="Use a minimum length of 12 characters and please use numbers and symbols for your password">
+    <div id='js-password-error'></div>
+
+    <input type="submit" id='submit' aria-label="Please click to sign in">
+    <div id="js-bad-user"></div>
+  </form>
+<script src='validate.js'></script>
 </body>
 </html>
