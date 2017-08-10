@@ -51,14 +51,10 @@ function validatePassword(password) {
     valid = false;
     var noPassword = document.createTextNode("Please enter your password")
     return passwordError.appendChild(noPassword);
-  } else if (password.value.length < 14) {
+  } else if (password.value.length < 12) {
     valid = false;
     var shortPassword = document.createTextNode("Your password is too short")
     return passwordError.appendChild(shortPassword);
-  } else if (!password.value.match(regex)) {
-    valid = false;
-    var weakPassword = document.createTextNode("Your password needs at least one uppercase, one symbol and one number!")
-    return passwordError.appendChild(weakPassword);
   } else if (password.value.length >= 100) {
     var longPassword = document.createTextNode("Your password is too long!");
     return usernameError.appendChild(longPassword);
