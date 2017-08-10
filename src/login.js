@@ -1,48 +1,33 @@
 const bcrypt = require('bcryptjs');
 const db = require('./database/db_connection');
 
-const loginQuery = (username, password, callback, handlerCb) => {
+//1: loginQuery
+const loginQuery = (obj, callback) => {
 
-  const sqlQuery = `SELECT * FROM users WHERE username='${username}'`;
+  const sqlQuery = `SELECT * FROM users WHERE username='${obj.username}'`;
   db.query(sqlQuery, (err, res) => {
     if (err) {
-      handlerCb(err, null);
+      return callback(err, null);
     } else {
-      console.log("res.rows: " + res.rows);
-      const responseObj = {
-        username: res.rows[0].username,
-        email: res.rows[0].email,
-        hash: res.rows[0].hash,
-      };
-      callback(null, password, res.rows[0].hash, handlerCb);
-
-    }
+      obj.hashedPassword = res.rows[0].hash;
+      return callback(null, obj);
+    };
   });
 };
 
-const verifyUser = (err, password, hashedPassword, handlerCb) => {
-  if (err) {
-    console.log('error: ' + err);
-  } else {
-    bcrypt.compare(password, hashedPassword, (err, res) => {
-      if (err) {
-        handlerCb(err);
+// 2: verifyUser
+const verifyUser = (obj, callback) => {
+  bcrypt.compare(obj.password, obj.hashedPassword, (err, res) => {
+    if (err) {
+      return callback(err);
+    } else {
+      if(res) {
+        obj.loggedIn = true;
       } else {
-        handlerCb(null, res);
+        obj.loggedIn = false;
       }
-    });
-  }
-};
-
-const hashPassword = (password) => {
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(password, salt, function(err, hash) {
-      if (err) {
-        console.error('Error');
-      } else {
-        console.log(`Password: ${password}, Hash: ${hash}`);
-      }
-    });
+      return callback(null, obj);
+    }
   });
 };
 
