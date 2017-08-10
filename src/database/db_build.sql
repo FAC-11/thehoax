@@ -20,6 +20,7 @@ INSERT INTO users(username, email, hash) VALUES
 
  CREATE TABLE history (
    id SERIAL PRIMARY KEY,
+  --  userid int4 REFERENCES users(id),
    userid int4 REFERENCES users(id),
    searchdate timestamp NOT NULL,
    search VARCHAR(100) NOT NULL
