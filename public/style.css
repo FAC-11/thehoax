@@ -7,6 +7,7 @@ h1 {
 
 body{
   background-color: #2d3142;
+  color: #cad8de;
 }
 
 *{
@@ -18,18 +19,38 @@ form{
   background-color: #b5d6b2;
   /*text-align: center;*/
   margin: 0 100px;
-  padding: 50px;
+  padding: 2vw;
   font-size: 1.5rem;
   border-radius: 8px;
     text-align: center;
 }
 
-.input{
-  margin: 5px 0;
-  padding: 2px;
+input{
+  margin: 5vh auto;
+  padding: 5px;
   font-size: 1.5rem;
 }
 
+label{
+  display: block;
+  text-align: center;
+  color: #2d3142;
+}
+
+
 .submit{
 font-size: 1.5rem;
+background-color: #2d3142;
+color: #cad8de;
+padding: 1em;
+border-radius: 10px;
+}
+
+.tinfoild__search {
+  width: 60%;
+  display: block;
+}
+
+#js-email-error, #js-password-error, #js-bad-user, #js-username-error{
+  color: black;
 }
