@@ -1,13 +1,12 @@
 const bcrypt = require('bcryptjs');
 const db = require('./database/db_connection');
 
-const loginQuery = (username, password, callback, callback2) => {
-  let verifyUserRes = false;
+const loginQuery = (username, password, callback, handlerCb) => {
 
   const sqlQuery = `SELECT * FROM users WHERE username='${username}'`;
   db.query(sqlQuery, (err, res) => {
     if (err) {
-      callback(err, null);
+      handlerCb(err, null);
     } else {
       console.log("res.rows: " + res.rows);
       const responseObj = {
@@ -15,29 +14,24 @@ const loginQuery = (username, password, callback, callback2) => {
         email: res.rows[0].email,
         hash: res.rows[0].hash,
       };
-      callback(null, password, res.rows[0].hash, callback2);
-      // console.log("verifyUserRes: " + verifyUserRes);
+      callback(null, password, res.rows[0].hash, handlerCb);
 
     }
   });
-  // return verifyUserRes;
 };
 
-const verifyUser = (err, password, hashedPassword, callback2) => {
+const verifyUser = (err, password, hashedPassword, handlerCb) => {
   if (err) {
     console.log('error: ' + err);
   } else {
-
     bcrypt.compare(password, hashedPassword, (err, res) => {
       if (err) {
-        callback2(err);
+        handlerCb(err);
       } else {
-        console.log("response: " , res);
-        callback2(null, res);
+        handlerCb(null, res);
       }
     });
   }
-
 };
 
 const hashPassword = (password) => {
@@ -52,17 +46,9 @@ const hashPassword = (password) => {
   });
 };
 
-const returnBoolean = (err, res) => {
-  if (err) console.log(err)
-  else {
-    return res;
-  }
-}
-
 module.exports = {
   loginQuery,
   verifyUser,
-  returnBoolean
 };
 
 // hashPassword('Sh3erl0ck1234!');

@@ -8,8 +8,10 @@
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
-const { loginQuery, verifyUser, returnBoolean } = require('./login');
-
+const {
+  loginQuery,
+  verifyUser
+} = require('./login');
 
 const handlers = {
   handleHomeRoute: (req, res) => {
@@ -53,21 +55,20 @@ const handlers = {
     req.on('end', () => {
       let dataObj = querystring.parse(data);
       console.log(dataObj);
-      const logSuccess = loginQuery(dataObj.username, dataObj.password, verifyUser, returnBoolean);
-      console.log('logSuccess: ' + logSuccess);
-      if (logSuccess) {
-        res.writeHead(302, {'Location' : '/public/tinfoild.html'});
-        res.end();
-      } else {
-        res.writeHead(401, {'Location' : '/'})
-        res.end();
-      }
-
-    })
-
-
-
-
+      loginQuery(dataObj.username, dataObj.password, verifyUser, (err, loggedIn) => {
+        if (loggedIn) {
+          res.writeHead(302, {
+            'Location': '/public/tinfoild.html'
+          });
+          res.end();
+        } else {
+          res.writeHead(302, {
+            'Location': '/'
+          });
+          res.end();
+        }
+      });
+    });
   },
   handleLogout: (req, res, url) => {},
   handleTinfoild: (req, res, url) => {},
