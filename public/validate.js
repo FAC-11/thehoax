@@ -27,18 +27,30 @@ function validateUsername(username) {
 }
 
 //  Validating email
-function validateEmail(email) {
+function validateEmail(emailObj) {
+  var emailVal = emailObj.value;
+  var beginDomain = emailVal.length - 13;
+  var endDomain = emailVal.length;
   valid = false;
-  if (!email.value) {
+  // if email is empty string
+  if (!emailVal) {
     var noEmail = document.createTextNode("Please enter your email");
     return emailError.appendChild(noEmail);
-  } else if (!email.value.includes('@tinfoild.com')) {
-    valid = false;
+  } else if (emailVal.substring(beginDomain, endDomain) !== '@tinfoild.com') {
+    console.log('email: ' + emailVal);
+    console.log('emailVal Substring: ' + emailVal.substring(beginDomain, endDomain));
     var badEmail = document.createTextNode("This email doesn't exist");
     return emailError.appendChild(badEmail);
-  } else if (email.value.length >= 100) {
+  } else if (emailVal.slice(0, beginDomain) === '') {
+    var emptyEmail = document.createTextNode("Email doesn't belong to anyone");
+    return emailError.appendChild(emptyEmail);
+  } else if (emailVal.length >= 100) {
     var longEmail = document.createTextNode("Your email is too long!");
     return usernameError.appendChild(longEmail);
+    // if email contains non alphanumeric characters
+  } else if (emailVal.slice(0, beginDomain).match(/[^A-Z1-9]/ig) !== null) {
+    var nonAlpha = document.createTextNode("Non alphanumeric characters are not allowed!");
+    return usernameError.appendChild(nonAlpha);
   } else {
     valid = true;
   }
