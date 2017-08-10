@@ -61,9 +61,9 @@ const handlers = {
       waterfall(dataObj, [loginQuery, verifyUser, makeJwt], (error, finalObj) => {
         if (finalObj.loggedIn) {
           console.log(finalObj);
-          res.setHeader('Set-Cookie', `jwt=${finalObj.jwebtoken}; HttpOnly;`);
+          res.setHeader('Set-Cookie', `jwt=${finalObj.jwebtoken}&obj=${finalObj.username}`);
           res.writeHead(302, {
-            'Location': '/public/tinfoild.html'
+            'Location': '/public/tinfoild.html',
           });
           res.end();
         } else {
@@ -79,10 +79,12 @@ const handlers = {
   handleTinfoild: (req, res, url) => {
     getData((err, dbResp) => {
       if (err) return console.log('error from db query', err);
-    let data = JSON.stringify(dbResp);
-    res.writeHead(200, {"content-type": "application/json"});
-    res.end(data);
-  });
+      let data = JSON.stringify(dbResp);
+      res.writeHead(200, {
+        "content-type": "application/json"
+      });
+      res.end(data);
+    });
   },
   handleSearch: (req, res, url) => {},
 };
