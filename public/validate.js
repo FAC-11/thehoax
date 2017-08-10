@@ -37,8 +37,6 @@ function validateEmail(emailObj) {
     var noEmail = document.createTextNode("Please enter your email");
     return emailError.appendChild(noEmail);
   } else if (emailVal.substring(beginDomain, endDomain) !== '@tinfoild.com') {
-    console.log('email: ' + emailVal);
-    console.log('emailVal Substring: ' + emailVal.substring(beginDomain, endDomain));
     var badEmail = document.createTextNode("This email doesn't exist");
     return emailError.appendChild(badEmail);
   } else if (emailVal.slice(0, beginDomain) === '') {
