@@ -4,14 +4,13 @@
 // '/search' -> to call hoaxy api
 // '/tinfoild' -> landing page after login
 // '/default' -> for error handling
+//
 
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
-const {
-  loginQuery,
-  verifyUser
-} = require('./login');
+const { loginQuery, verifyUser } = require('./login');
+const waterfall = require('./waterfall');
 
 const handlers = {
   handleHomeRoute: (req, res) => {
@@ -54,9 +53,8 @@ const handlers = {
 
     req.on('end', () => {
       let dataObj = querystring.parse(data);
-      console.log(dataObj);
-      loginQuery(dataObj.username, dataObj.password, verifyUser, (err, loggedIn) => {
-        if (loggedIn) {
+      waterfall(dataObj, [loginQuery, verifyUser], (error, finalObj) => {
+        if (finalObj.loggedIn) {
           res.writeHead(302, {
             'Location': '/public/tinfoild.html'
           });
@@ -71,23 +69,8 @@ const handlers = {
     });
   },
   handleLogout: (req, res, url) => {},
-  handleTinfoild: (req, res, url) => {
-
-    const filePath = path.join(__dirname, '..', 'public', 'tinfoild.html');
-    fs.readFile(filePath, (error, file) => {
-      if (error) {
-        res.writeHead(500, 'Content-Type:text/html');
-        res.end('<h1>Sorry, the spies are here!!</h1><h2>Run Forest Run!</h2>');
-      } else {
-        res.writeHead(200, 'Content-Type:text/html');
-        res.end(file);
-      }
-    });
-
-
-  },
-
+  handleTinfoild: (req, res, url) => {},
   handleSearch: (req, res, url) => {},
 };
 
-module.exports = handlers
+module.exports = handlers;
