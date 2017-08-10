@@ -1,3 +1,6 @@
+var table = document.getElementById('conspiracy-table');
+
+
 function httpRequest (url, reqType, cb) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -12,10 +15,33 @@ function httpRequest (url, reqType, cb) {
 }
 
 
-httpRequest('/tinfoild', 'GET', function(err, data) {
-  if (err) console.log(err);
-  console.log(data);
-});
+function render(err, data) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    var searches = JSON.parse(data);
+    // console.log(searches);
+    searches.forEach(function(search) {
+      console.log(search)
+      var row = document.createElement('tr');
+      var name = document.createElement('td');
+      name.innerHTML = search.username;
+      row.appendChild(name);
+
+      var conspiracy = document.createElement('td');
+      conspiracy.innerHTML = search.search;
+      row.appendChild(conspiracy);
+
+      var date = document.createElement('td');
+      date.innerHTML = search.searchdate;
+      row.appendChild(date);
+      table.appendChild(row);
+    })
+  }
+}
+
+httpRequest('/tinfoild', 'GET', render);
 
 
 
