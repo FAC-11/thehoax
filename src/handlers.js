@@ -43,8 +43,21 @@ const handlers = {
   handleLogin: (req, res, url) => {},
   handleLogout: (req, res, url) => {},
   handleTinfoild: (req, res, url) => {
-    
+
+    const filePath = path.join(__dirname, '..', 'public', 'tinfoild.html');
+    fs.readFile(filePath, (error, file) => {
+      if (error) {
+        res.writeHead(500, 'Content-Type:text/html');
+        res.end('<h1>Sorry, the spies are here!!</h1><h2>Run Forest Run!</h2>');
+      } else {
+        res.writeHead(200, 'Content-Type:text/html');
+        res.end(file);
+      }
+    });
+
+
   },
+
   handleSearch: (req, res, url) => {},
 };
 
