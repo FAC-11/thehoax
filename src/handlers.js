@@ -8,10 +8,8 @@
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
-const {
-  loginQuery,
-  verifyUser
-} = require('./login');
+const { loginQuery, verifyUser } = require('./login');
+const waterfall = require('./waterfall');
 
 const handlers = {
   handleHomeRoute: (req, res) => {
@@ -54,9 +52,8 @@ const handlers = {
 
     req.on('end', () => {
       let dataObj = querystring.parse(data);
-      console.log(dataObj);
-      loginQuery(dataObj.username, dataObj.password, verifyUser, (err, loggedIn) => {
-        if (loggedIn) {
+      waterfall(dataObj, [loginQuery, verifyUser], (error, finalObj) => {
+        if (finalObj.loggedIn) {
           res.writeHead(302, {
             'Location': '/public/tinfoild.html'
           });
@@ -71,8 +68,10 @@ const handlers = {
     });
   },
   handleLogout: (req, res, url) => {},
-  handleTinfoild: (req, res, url) => {},
+  handleTinfoild: (req, res, url) => {
+
+  },
   handleSearch: (req, res, url) => {},
 };
 
-module.exports = handlers
+module.exports = handlers;
