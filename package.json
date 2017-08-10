@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "tape ./tests/test.js | tap-spec",
+    "t-dif": "tape ./tests/test.js | tap-diff",
     "converage": "istanbul cover ./tests/test.js",
     "start": "node ./src/server.js",
     "devstart": "nodemon ./src/server.js"
@@ -29,6 +30,7 @@
     "istanbul": "^0.4.5",
     "nodemon": "^1.11.0",
     "shot": "^3.4.2",
+    "tap-diff": "^0.1.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
     "travis": "^0.1.1"
