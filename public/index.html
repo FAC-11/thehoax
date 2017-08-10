@@ -23,15 +23,15 @@
 
     <label for="email">Email:</label>
     <input id="email" type="email" name="email" placeholder="Yoursecretname@tinfoild.com" aria-label="please enter your tinfoiled.com email">
-    <div id='js-email-error'></div>
+    <div id='js-email-error' class='email-error'></div>
 
     <label for="password" title="Use 12 characters with numbers, symbols and at least one upper case">Password:</label>
     <input type="password" name="password" id='password' placeholder="sSF*19!ASDH-" aria-label="Use a minimum length of 12 characters and please use numbers and symbols for your password">
 
-    <div id='js-password-error'></div>
+    <div id='js-password-error' class='password-error'></div>
 
     <input type="submit" id='submit' class="submit" aria-label="Please click to sign in">
-    <div id="js-bad-user"></div>
+    <div id="js-bad-user" class='bad-user'></div>
   </form>
 <script src='/public/validate.js'></script>
 <script src="/public/dom.js"></script>
