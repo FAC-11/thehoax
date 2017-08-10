@@ -2,8 +2,8 @@ const tape = require("tape");
 const shot = require('shot');
 const fs = require('fs');
 const path = require('path');
-const buildDataBase = require("../src/database/db_build.js");
-const dbConnection = require("../src/database/db_connection.js");
+const buildDataBase = require("./database//db_build.js");
+const dbConnection = require("./database/db_connection.js");
 const router = require('../src/router.js');
 const handlers = require('../src/handlers.js');
 
@@ -13,17 +13,17 @@ tape("Select all from users", t => {
   const expected = [{
       username: 'secretSquirrel',
       email: 'secretSquirrel@tinfoild.com',
-      hash: '$2a$10$sC.59Y4qqYh9s9za4iuXde8.mbUbEyQlfBR8LgwPj5gpBpLgAklnu'
+      hash: '$2a$10$911jG3PlVr02HE5VXNi8euzf/qnVOY9eG8fW4P.5qmxzGhU5uq9D6'
     },
     {
       username: 'theConspirat0r',
       email: 'theConspirat0r@tinfoild.com',
-      hash: '$2a$10$yXQokIuBEBYN7MKl5gy/P.pc1aHea4Ow/8yzim7Q9QiQ60a3w6xA2'
+      hash: '$2a$10$pGM8hQ0RVHKcd/ZmIVQ/..NvoRMn2GBN8mvAVxa746fyOp5pY1sFy'
     },
     {
       username: 'theRealSherlock',
       email: 'theRealSherlock@tinfoild.com',
-      hash: '$2a$10$XKvMVmVljg68aKsPsSeN5.QXVkx0cQhW3RQE49mTTchxm7tRgEHom'
+      hash: '$2a$10$3xolckCwuz.hbOiJF.zp.eG2vI2WnXYnBD6LmodojRZwGp/UW7juS'
     }
   ];
   dbConnection.query("SELECT username, email, hash FROM users;", (err, res) => {
@@ -41,22 +41,22 @@ tape("Select all from history", t => {
   buildDataBase();
   const expected = [{
       userid: 1,
-      searchdate: new Date('at Wed Aug 09 2017 12:45:34 GMT+0100 (BST)'),
+      // searchdate: new Date('at Wed Aug 09 2017 12:45:34 GMT+0100 (BST)'),
       search: 'Is Bin-Laden alive?'
     },
     {
       userid: 2,
-      searchdate: new Date('at Fri Jun 30 2017 13:45:34 GMT+0100 (BST)'),
+      // searchdate: new Date('at Fri Jun 30 2017 13:45:34 GMT+0100 (BST)'),
       search: 'Is Abdullah a spy?'
     },
     {
       userid: 3,
-      searchdate: new Date('at Sat Jul 15 2017 01:45:34 GMT+0100 (BST)'),
+      // searchdate: new Date('at Sat Jul 15 2017 01:45:34 GMT+0100 (BST)'),
       search: 'Is the moon landing fake?'
     }
   ];
   console.log(expected[0].searchdate);
-  dbConnection.query("SELECT userid, searchdate, search FROM history;", (err, res) => {
+  dbConnection.query("SELECT userid, search FROM history;", (err, res) => {
     if (err) {
       t.error(err, 'this is an error')
     } else {
