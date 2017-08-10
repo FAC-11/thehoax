@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/FAC-11/thehoax.svg?branch=master)](https://travis-ci.org/FAC-11/thehoax)
+
 # thehoax
 
 have you ever wondered if something is true but been too embarassed to ask your friends? 

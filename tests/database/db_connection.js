@@ -6,7 +6,7 @@
    throw new Error('Environment variable DATABASE_URLx must be set!');
  }
 
- const params = url.parse(process.env.DATABASE_URL);
+ const params = url.parse(process.env.DATABASE_URLx);
  const [user, password] = params.auth.split(':') || ['', ''];
  const options = {
    host: params.hostname,
