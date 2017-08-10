@@ -27,7 +27,7 @@ form{
 }
 
 input{
-  margin: 5vh auto;
+  margin: 3.5vh auto;
   padding: 5px;
   font-size: 1.5rem;
 }
@@ -54,4 +54,26 @@ border-radius: 10px;
 
 #js-email-error, #js-password-error, #js-bad-user, #js-username-error{
   color: black;
+}
+
+.table-container{
+  text-align: center;
+}
+
+th{
+    font-size: 1.5rem;
+    padding: 1rem 12.5rem;
+    text-align: center;
+}
+
+td{
+  text-align: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  margin:auto;
+
+}
+
+th, td {
+  border-bottom: 1px solid grey;
 }
