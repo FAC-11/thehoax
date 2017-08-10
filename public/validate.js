@@ -10,11 +10,17 @@ var valid = false;
 
 //validating username is inputted
 function validateUsername(username) {
-    console.log(typeof username.value);
+  var regex = /^[_A-z0-9]((-|\s)[_A-z0-9])*$/g;
   if (!username.value) {
     valid = false;
     var noUsername = document.createTextNode("Please enter your username");
     return usernameError.appendChild(noUsername);
+  } else if(!username.value.match(regex)){
+    var symbolsUsername = document.createTextNode("Your username should not contain any symbols");
+    return usernameError.appendChild(symbolsUsername);
+  } else if(username.value.length >= 100){
+      var longUsername = document.createTextNode("Your username is too long!");
+      return usernameError.appendChild(longUsername);
   } else {
     valid = true;
   }
@@ -28,9 +34,11 @@ function validateEmail(email) {
     return emailError.appendChild(noEmail);
   } else if (!email.value.includes('@tinfoild.com')) {
       valid = false;
-    console.log(!email.value.includes('@tinfoild.com'));
     var badEmail = document.createTextNode("This email doesn't exist");
     return emailError.appendChild(badEmail);
+  } else if(email.value.length >= 100){
+        var longEmail = document.createTextNode("Your email is too long!");
+        return usernameError.appendChild(longEmail);
   } else {
     valid = true;
   }
@@ -51,6 +59,9 @@ function validatePassword(password) {
     valid = false;
     var weakPassword = document.createTextNode("Your password needs at least one uppercase, one symbol and one number!")
     return passwordError.appendChild(weakPassword);
+  } else if(password.value.length >= 100){
+        var longPassword = document.createTextNode("Your password is too long!");
+        return usernameError.appendChild(longPassword);
   } else {
     valid = true;
   }
