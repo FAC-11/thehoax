@@ -5,28 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Nixie+One|Poiret+One" rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
-<h1>Tinfoil'd</h1>
 
+  <header>
+<h1>Tinfoil'd</h1>
+</header>
+
+<section class='form'>
   <form action="/login" method='POST'>
     <label for="username">Username:</label>
 
-    <input id="username" type="username" placeholder="Username" aria-label="please enter your username">
+    <input id="username" class='input' type="username" placeholder="Username" aria-label="please enter your username">
     <div id='js-username-error'></div>
 
     <label for="email">Email:</label>
-    <input id="email" type="email" placeholder="Yoursecretname@tinfoild.com" aria-label="please enter your tinfoiled.com email">
+    <input id="email" type="email" class='input' placeholder="Yoursecretname@tinfoild.com" aria-label="please enter your tinfoiled.com email">
     <div id='js-email-error'></div>
 
     <label for="password" title="Use 12 characters with numbers, symbols and at least one upper case">Password:</label>
-    <input type="password" id='password' placeholder="sSF*19!ASDH-" aria-label="Use a minimum length of 12 characters and please use numbers and symbols for your password">
+    <input type="password" id='password' class='input' placeholder="sSF*19!ASDH-" aria-label="Use a minimum length of 12 characters and please use numbers and symbols for your password">
     <div id='js-password-error'></div>
 
-    <input type="submit" id='submit' aria-label="Please click to sign in">
+    <input type="submit" id='submit' class="submit" aria-label="Please click to sign in">
     <div id="js-bad-user"></div>
   </form>
+</section>
 <script src='validate.js'></script>
 </body>
 </html>
