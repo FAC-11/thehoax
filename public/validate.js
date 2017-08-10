@@ -10,14 +10,11 @@ var valid = false;
 
 //validating username is inputted
 function validateUsername(username) {
+    console.log(typeof username.value);
   if (!username.value) {
     valid = false;
     var noUsername = document.createTextNode("Please enter your username");
     return usernameError.appendChild(noUsername);
-    valid = false;
-  } else if (typeof usernmae !== 'string') {
-    var notStringUsername = document.createTextNode("Please enter valid username");
-    return usernameError.appendChild(notStringUsername);
   } else {
     valid = true;
   }
@@ -29,10 +26,6 @@ function validateEmail(email) {
   if (!email.value) {
     var noEmail = document.createTextNode("Please enter your email");
     return emailError.appendChild(noEmail);
-  } else if (typeof email !== 'string') {
-      valid = false;
-    var notStringEmail = document.createTextNode("Please enter valid email");
-    return emailError.appendChild(notStringEmail);
   } else if (!email.value.includes('@tinfoild.com')) {
       valid = false;
     console.log(!email.value.includes('@tinfoild.com'));
@@ -50,10 +43,6 @@ function validatePassword(password) {
     valid = false;
     var noPassword = document.createTextNode("Please enter your password")
     return passwordError.appendChild(noPassword);
-  } else if (typeof password !== 'string') {
-    valid = false;
-    var notStringpassword = document.createTextNode("Please enter valid password");
-    return passwordError.appendChild(notStringPassword);
   } else if (password.value.length < 14) {
     valid = false;
     var shortPassword = document.createTextNode("Your password is too short")
