@@ -51,7 +51,7 @@ function validatePassword(password) {
     valid = false;
     var noPassword = document.createTextNode("Please enter your password")
     return passwordError.appendChild(noPassword);
-  } else if (password.value.length < 14) {
+  } else if (password.value.length < 12) {
     valid = false;
     var shortPassword = document.createTextNode("Your password is too short")
     return passwordError.appendChild(shortPassword);
