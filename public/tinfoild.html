@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>WELCOME!!!</h1>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Tinfoil'd</title>
+</head>
+
+<body>
+  <header>
+    <h1>Tinfoil'd</h1>
+    <h2>Welcome <span id="user-welcome"></span></h2>
+  </header>
+  <section id="conspiracy-input">
+    <form class="" action="index.html" method="post">
+      <input type="text" name="search " id="search" value="search for your conspiracy" aria-label="search for your conspiracy">
+      <input type="submit" id="submit" name="submit" value="submit">
+    </form>
+  </section>
+  <section id="conspiracy-articles">
+    <!--  our theories-->
+  </section>
+  <section id="user-searches">
+    <h2>Look at these other searches!</h2>
+    <div class="table-container">
+      <table id="conspiracy-table">
+        <tr>
+          <th>Username</th>
+          <th>Search</th>
+        </tr>
+      </table>
+    </div>
+
+  </section>
+  <script type="text/javascript" src="./dom.js">
+  </script>
+
+</body>
 </html>
