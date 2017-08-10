@@ -15,7 +15,7 @@ function validateUsername(username) {
     valid = false;
     var noUsername = document.createTextNode("Please enter your username");
     return usernameError.appendChild(noUsername);
-  } else if (!username.value.match(regex)) {
+  } else if (username.value.match(regex)) {
     var symbolsUsername = document.createTextNode("Your username should not contain any symbols");
     return usernameError.appendChild(symbolsUsername);
   } else if (username.value.length >= 100) {
