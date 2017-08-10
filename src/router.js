@@ -23,6 +23,9 @@ const router = (req, res) => {
     case 'POST /tinfoild':
       handlers.handleTinfoild(req, res, url);
       break;
+      case 'GET /tinfoild':
+        handlers.handleTinfoild(req, res, url);
+        break;
     default:
       res.writeHead(404, 'Content-Type: text/html');
       res.end('<h1>404!</h1><h2>We were never here...</h2>');
