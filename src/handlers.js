@@ -7,6 +7,11 @@
 
 const fs = require('fs');
 const path = require('path');
+const querystring = require('querystring');
+const {
+  loginQuery,
+  verifyUser
+} = require('./login');
 
 const handlers = {
   handleHomeRoute: (req, res) => {
@@ -40,7 +45,31 @@ const handlers = {
       }
     });
   },
-  handleLogin: (req, res, url) => {},
+  handleLogin: (req, res, url) => {
+    let data = '';
+
+    req.on('data', (chunk) => {
+      data += chunk;
+    })
+
+    req.on('end', () => {
+      let dataObj = querystring.parse(data);
+      console.log(dataObj);
+      loginQuery(dataObj.username, dataObj.password, verifyUser, (err, loggedIn) => {
+        if (loggedIn) {
+          res.writeHead(302, {
+            'Location': '/public/tinfoild.html'
+          });
+          res.end();
+        } else {
+          res.writeHead(302, {
+            'Location': '/'
+          });
+          res.end();
+        }
+      });
+    });
+  },
   handleLogout: (req, res, url) => {},
   handleTinfoild: (req, res, url) => {},
   handleSearch: (req, res, url) => {},

@@ -10,9 +10,9 @@ CREATE TABLE users (
 );
 
 INSERT INTO users(username, email, hash) VALUES
- ('secretSquirrel','secretSquirrel@tinfoild.com','$2a$10$sC.59Y4qqYh9s9za4iuXde8.mbUbEyQlfBR8LgwPj5gpBpLgAklnu'),
- ('theConspirat0r','theConspirat0r@tinfoild.com', '$2a$10$yXQokIuBEBYN7MKl5gy/P.pc1aHea4Ow/8yzim7Q9QiQ60a3w6xA2'),
- ('theRealSherlock','theRealSherlock@tinfoild.com','$2a$10$XKvMVmVljg68aKsPsSeN5.QXVkx0cQhW3RQE49mTTchxm7tRgEHom');
+ ('secretSquirrel','secretSquirrel@tinfoild.com','$2a$10$911jG3PlVr02HE5VXNi8euzf/qnVOY9eG8fW4P.5qmxzGhU5uq9D6'),
+ ('theConspirat0r','theConspirat0r@tinfoild.com', '$2a$10$pGM8hQ0RVHKcd/ZmIVQ/..NvoRMn2GBN8mvAVxa746fyOp5pY1sFy'),
+ ('theRealSherlock','theRealSherlock@tinfoild.com','$2a$10$3xolckCwuz.hbOiJF.zp.eG2vI2WnXYnBD6LmodojRZwGp/UW7juS');
 
  -- S3crEtSconS!
  -- c0nSpiracy123!
