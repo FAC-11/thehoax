@@ -16,6 +16,7 @@ const {
 } = require('./login');
 const waterfall = require('./waterfall');
 const getData = require('./queries/get_data');
+const postData = require('./queries/postData');
 
 const handlers = {
   handleHomeRoute: (req, res) => {
@@ -86,7 +87,23 @@ const handlers = {
       res.end(data);
     });
   },
-  handleSearch: (req, res, url) => {},
+  handleSearch: (req, res, url) => {
+    let data = '';
+    req.on('data', (chunk) => {
+      data += chunk;
+    });
+    req.on('end', () => {
+      let input = querystring.parse(data);
+      console.log(input);
+      postData(input, (err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(res);
+        }
+      })
+    })
+  }
 };
 
 module.exports = handlers;
