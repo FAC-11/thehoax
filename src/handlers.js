@@ -1,11 +1,3 @@
-// '/'-> home route
-// '/login' -> from homepage
-// '/logout' -> on click
-// '/search' -> to call hoaxy api
-// '/tinfoild' -> landing page after login
-// '/default' -> for error handling
-//
-
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
@@ -16,8 +8,27 @@ const {
 } = require('./login');
 const waterfall = require('./waterfall');
 const getData = require('./queries/get_data');
+const env = require('env2')('./config.env');
+const jwt = require('jsonwebtoken');
 
 const handlers = {
+  handleLanding: (req, res) => {
+    const cookie = querystring.parse(req.headers.cookie);
+    jwt.verify(cookie.jwt, process.env.SECRET, (err, success) => {
+      if (err) {
+        console.log("This is an error :",err);
+        res.writeHead(302,{
+          Location:'/welcome'
+        })
+        res.end();
+      } else {
+        res.writeHead(302, {
+          Location:'/public/tinfoild.html'
+        })
+        res.end();
+      }
+    })
+  },
   handleHomeRoute: (req, res) => {
     const filePath = path.join(__dirname, '..', 'public', 'index.html');
     fs.readFile(filePath, (error, file) => {
