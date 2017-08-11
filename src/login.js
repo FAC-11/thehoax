@@ -35,6 +35,8 @@ const verifyUser = (obj, callback) => {
   });
 };
 
+//3: make a JWT
+
 const makeJwt = (obj, callback) => {
   if (obj.loggedIn === false) {
     return callback('Not Authorised!');

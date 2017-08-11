@@ -6,8 +6,11 @@ const router = (req, res) => {
 
   switch (`${req.method} ${req.url}`) {
     case 'GET /':
-      handlers.handleHomeRoute(req, res);
+        handlers.handleLanding(req, res);
       break;
+      case 'GET /welcome':
+          handlers.handleHomeRoute(req, res);
+        break;
     case `GET /public/${publicFile}`:
       handlers.handlePublic(req, res, url);
       break;
@@ -23,9 +26,9 @@ const router = (req, res) => {
     case 'POST /tinfoild':
       handlers.handleTinfoild(req, res, url);
       break;
-      case 'GET /tinfoild':
-        handlers.handleTinfoild(req, res, url);
-        break;
+    case 'GET /tinfoild':
+      handlers.handleTinfoild(req, res, url);
+      break;
     default:
       res.writeHead(404, 'Content-Type: text/html');
       res.end('<h1>404!</h1><h2>We were never here...</h2>');
