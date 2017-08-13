@@ -23,7 +23,7 @@ INSERT INTO users(username, email, hash) VALUES
   --  userid int4 REFERENCES users(id),
    userid int4 REFERENCES users(id),
    searchdate timestamp NOT NULL,
-   search VARCHAR(100) NOT NULL
+   search VARCHAR(100) NOT NULL,
  );
 
  INSERT INTO history(userid, searchdate, search) VALUES

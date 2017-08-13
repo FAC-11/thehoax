@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const http = require("http");
 const querystring = require('querystring');
 const {
   loginQuery,
@@ -8,22 +9,24 @@ const {
 } = require('./login');
 const waterfall = require('./waterfall');
 const getData = require('./queries/get_data');
+const postData = require('./queries/post_data')
 const env = require('env2')('./config.env');
 const jwt = require('jsonwebtoken');
+const searchUrl =  require('./search');
 
 const handlers = {
   handleLanding: (req, res) => {
     const cookie = querystring.parse(req.headers.cookie);
     jwt.verify(cookie.jwt, process.env.SECRET, (err, success) => {
       if (err) {
-        console.log("This is an error :",err);
-        res.writeHead(302,{
-          Location:'/welcome'
+        console.log("This is an error :", err);
+        res.writeHead(302, {
+          Location: '/welcome'
         })
         res.end();
       } else {
         res.writeHead(302, {
-          Location:'/public/tinfoild.html'
+          Location: '/public/tinfoild.html'
         })
         res.end();
       }
@@ -71,7 +74,6 @@ const handlers = {
       let dataObj = querystring.parse(data);
       waterfall(dataObj, [loginQuery, verifyUser, makeJwt], (error, finalObj) => {
         if (finalObj.loggedIn) {
-          console.log(finalObj);
           res.setHeader('Set-Cookie', `jwt=${finalObj.jwebtoken}&obj=${finalObj.username}`);
           res.writeHead(302, {
             'Location': '/public/tinfoild.html',
@@ -87,6 +89,25 @@ const handlers = {
     });
   },
   handleLogout: (req, res, url) => {},
+  handleSearch: (req, res, url) => {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      body = body.split('&')[0];
+      let userInput = querystring.parse(body);
+      userInput.searchdate = new Date();
+      postData(userInput, (err, dbResp) => {
+        if (err) {
+          console.log('errorinposting', err);
+        } else {
+          console.log('adiossss');
+          console.log(dbResp);
+        }
+      });
+    });
+  },
   handleTinfoild: (req, res, url) => {
     getData((err, dbResp) => {
       if (err) return console.log('error from db query', err);
@@ -97,7 +118,12 @@ const handlers = {
       res.end(data);
     });
   },
-  handleSearch: (req, res, url) => {},
+handleConspiracy: (req, res, url) =>{
+  
+}
 };
+
+
+
 
 module.exports = handlers;

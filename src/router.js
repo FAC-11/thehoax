@@ -3,6 +3,7 @@ const handlers = require('./handlers');
 const router = (req, res) => {
   const url = req.url;
   const publicFile = req.url.split('/')[2];
+  const conspiracyUrl = url.split('&')[2];
 
   switch (`${req.method} ${req.url}`) {
     case 'GET /':
@@ -21,7 +22,10 @@ const router = (req, res) => {
       handlers.handleLogout(req, res, url);
       break;
     case 'POST /search':
-      handlers.handleSearch(req, res, url);
+        handlers.handleSearch(req, res, url);
+        break;
+    case 'GET /searchConspiracy':
+      handlers.handleConspiracy(req, res, url);
       break;
     case 'POST /tinfoild':
       handlers.handleTinfoild(req, res, url);
